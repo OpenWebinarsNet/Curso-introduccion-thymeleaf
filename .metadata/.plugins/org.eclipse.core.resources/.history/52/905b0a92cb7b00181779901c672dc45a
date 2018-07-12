@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title></title>
+
+<!-- Bootstrap -->
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Openwebinars.net Shop</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Opciones</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Buscar...">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Imagen</th>
+							<th>Nombre</th>
+							<th>Pvp</th>
+							<th>Operaciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="producto : ${productos}">
+							<td><img
+								th:src="${not (#strings.isEmpty(producto.imagen))} ? ${producto.imagen} : 'http://placehold.it/48x48'"
+								class="img-responsive icono-categoria" alt="imagen" /></td>
+							<td th:text="${categoria.nombre}"></td>
+							<td class="operaciones"><a href="#"
+								th:href="@{/admin/categoria/editar/{id}(id=${categoria.id})}"
+								class="btn btn-primary">Editar</a> <!--  th:href="@{/admin/categoria/borrar/{id}(id=${categoria.id})}"
+								 --> <button type="button" class="btn btn-danger" data-toggle="modal"
+								data-target="#delete-modal" th:data-id="${categoria.id}">Borrar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Borrar categoria</h4>
+				</div>
+				<div class="modal-body">
+					<p>¿Está usted seguro de borrar esta categoría?</p>
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+					<a href="/admin/categoria/borrar/" class="btn btn-danger">Sí</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript">
+	
+		$('#delete-modal').on('show.bs.modal', function(event){
+			var button = $(event.relatedTarget);
+			var data = button.data('id');
+			
+			var modal = $(this);
+			
+			var a = modal.find('.modal-body a')[0];
+			a.href = a.href + data; 
+			
+		});
+		
+	</script>
+
+
+</body>
+</html>

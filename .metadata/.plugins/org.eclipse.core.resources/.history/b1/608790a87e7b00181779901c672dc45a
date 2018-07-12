@@ -1,0 +1,11 @@
+package com.openwebinars.proyecto.controladores;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+@RequestMapping("/admin/categoria")
+public class CategoriaController {
+	
+	@Get
+
+}

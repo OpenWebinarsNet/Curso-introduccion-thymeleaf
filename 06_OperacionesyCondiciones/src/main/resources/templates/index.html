@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Bootstrap 101 Template</title>
+
+<!-- Bootstrap -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center">Ejemplos de uso de operadores,
+					condiciones y comparaciones</h1>
+				<hr />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Operadores aritméticos</h2>
+				<ul>
+					<li><strong>Suma (${4 + 0.2}):</strong> <span
+						th:text="${4 + 0.2}">número</span></li>
+					<li><strong>Resta (${3 - 0.12}):</strong> <span
+						th:text="${3 - 0.12}">número</span></li>
+					<li><strong>Multiplicación (${4 * 3}):</strong> <span
+						th:text="${4 * 3}">número</span></li>
+					<li><strong>Divisón entera (${4 / 3}):</strong> <span
+						th:text="${4 / 3}">número</span></li>
+					<li><strong>Resto (${5 % 3}):</strong> <span
+						th:text="${5 % 3}">número</span></li>
+					<li><strong>Divisón no entera (${4 / 3.0}):</strong> <span
+						th:text="${4 / 3.0}">número</span></li>
+					<li><strong>Potencia (${4^3}):</strong> <span th:text="${4^3}">número</span></li>
+					<li><strong>Cambio de signo (${-(-2)}):</strong> <span
+						th:text="${-(-2)}">número</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Operadores textuales</h2>
+				<ul>
+					<li><strong>Concatenación (${'Hola ' + 'mundo'}):</strong><span
+						th:text="${'Hola ' + 'mundo'}">texto</span></li>
+					<li><strong>Sustitución de literales (|Mi nombre es
+							${nombre}|):</strong><span th:text="|Mi nombre es ${nombre}|">texto</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Operadores relacionales</h2>
+				<ul>
+					<li><strong>Menor (${3 < 2}):</strong><span th:text="${3<2}">resultado</span></li>
+					<li><strong>Menor o igual (${3 le 3}):</strong><span
+						th:text="${3 le 3}">resultado</span></li>
+					<li><strong>Mayor (${3 gt 2}):</strong><span
+						th:text="${3 gt 2}">resultado</span></li>
+					<li><strong>Mayor o igual (${3 >= 3}):</strong><span
+						th:text="${3 >= 3}">resultado</span></li>
+					<li><strong>Igual (${'hola' eq 'Hola'}):</strong><span
+						th:text="${'hola' eq 'Hola'}">resultado</span></li>
+					<li><strong>Distinto (${'hola' ne 'Hola'}):</strong><span
+						th:text="${'hola' ne 'Hola'}">resultado</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Operadores booleanos</h2>
+				<ul>
+					<li><strong>And (${(3 < 4) and (4 < 5)}):</strong><span
+						th:text="${(3 < 4) and (4 < 5)}">resultado</span></li>
+					<li><strong>Or (${(3 > 4) or (4 < 5)}):</strong><span
+						th:text="${(3 > 4) or (4 < 5)}">resultado</span></li>
+					<li><strong>Negacion (${ not (3 < 4) }):</strong><span
+						th:text="${not (3 < 4) }">resultado</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Comparaciones</h2>
+				<p>Si el número de productos en la lista es mayor o igual que
+					uno, mostramos el nombre del primero. En otro caso, un mensaje
+					estándar.</p>
+				<div th:if="${not #lists.isEmpty(lista)}">
+					<p th:text="|Nombre del producto: ${lista[0].nombre}|">nombre</p>
+				</div>
+				<div th:unless="${not #lists.isEmpty(lista)}">
+					<p>No hay productos disponibles en la lista</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Operadores condicionales</h2>
+				<p>Realizamos la operación anterior, pero de forma mucho más resumida</p>
+				<p th:text="${not #lists.isEmpty(lista)} ? |Nombre del producto: ${lista[0].nombre}| : 'No hay productos disponibles en la lista'">nombre</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Expresiones por defecto</h2>
+				<div th:object="${producto}">
+					<p><strong th:text="*{nombre}">Nombre</strong> (<span th:text="*{precio}">precio</span> €)</p>
+					<p th:text="*{descripcion}?: 'Si quiere más información sobre nuestro productos, no dude en contactar con nosotros'">texto</p>
+				</div>
+				<div th:object="${producto2}">
+					<p><strong th:text="*{nombre}">Nombre</strong> (<span th:text="*{precio}">precio</span> €)</p>
+					<p th:text="*{descripcion}?: 'Si quiere más información sobre nuestro productos, no dude en contactar con nosotros'">texto</p>
+				</div>
+				<div th:object="${producto2}">
+					<p><strong th:text="*{nombre}">Nombre</strong> (<span th:text="*{precio}">precio</span> €)</p>
+					<p th:text="*{descripcion}?: _">Si quiere más información sobre nuestro productos, no dude en contactar con nosotros</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+package com.openwebinars.proyecto.controladores;
+
+public class CategoriaController {
+
+}

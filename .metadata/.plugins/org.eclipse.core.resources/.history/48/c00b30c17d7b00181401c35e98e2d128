@@ -1,0 +1,29 @@
+server.port=9000
+
+spring.thymeleaf.cache=false
+
+# URL jdbc de conexión a la base de datos
+spring.datasource.url=jdbc:h2:./db/basededatos
+
+# Usuario y contraseña de la base de datos
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Habilitamos la consola de H2
+# http://localhost:{server.port}/h2-console
+# En nuestro caso http://localhost:9000/h2-console
+spring.h2.console.enabled=true
+
+# Habilitamos los mensajes sql en el log
+spring.jpa.show-sql=true
+
+# Le indicamos a JPA/Hibernate si queremos que se encargue de generar el DDL
+# En nuestro caso, delegamos en los ficheros schema.sql y data.sql
+spring.jpa.hibernate.ddl-auto=none
+
+
+# Dialecto de Hibernate
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
+
+
+

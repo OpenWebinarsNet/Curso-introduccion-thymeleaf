@@ -1,0 +1,49 @@
+package com.openwebinars.proyecto;
+
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.openwebinars.proyecto.modelo.Producto;
+import com.openwebinars.proyecto.modelo.Puntuacion;
+import com.openwebinars.proyecto.repositorios.CategoriaRepository;
+import com.openwebinars.proyecto.repositorios.ProductoRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	
+	/**
+	 * 
+	 * @param categoriaRepository
+	 * @param productoRepository
+	 * @return
+	 */
+	
+	@Bean
+	public CommandLineRunner initData(ProductoRepository productoRepository) {
+
+		return args -> {
+
+			List<Producto> productos = productoRepository.findAll();
+			
+			Random r = new Random();
+			for (Producto p : productos) {
+				for (int i = 0; i < r.nextInt(10); i++)
+					p.addPuntuacion(new Puntuacion(3 + r.nextInt(2)));
+			}
+
+			productoRepository.saveAll(productos);
+
+		};
+
+	}
+}

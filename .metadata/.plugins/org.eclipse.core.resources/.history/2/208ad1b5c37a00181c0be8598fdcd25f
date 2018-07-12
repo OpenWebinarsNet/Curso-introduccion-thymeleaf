@@ -1,0 +1,210 @@
+package com.openwebinars.proyecto;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.openwebinars.proyecto.modelo.Categoria;
+import com.openwebinars.proyecto.modelo.Producto;
+import com.openwebinars.proyecto.modelo.Puntuacion;
+import com.openwebinars.proyecto.repositorios.CategoriaRepository;
+import com.openwebinars.proyecto.repositorios.ProductoRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+	
+	@Bean
+	public CommandLineRunner initData(CategoriaRepository categoriaRepository, ProductoRepository productoRepository) {
+		
+		return args -> {
+			List<Categoria> categorias = Arrays.asList(
+					new Categoria("Portátiles", true, null),
+					new Categoria("Sobremesa", false, null),
+					new Categoria("Componentes", true, null),
+					new Categoria("Smartphones", true, null)
+					);
+			
+			categoriaRepository.saveAll(categorias);
+			
+			
+			List<Producto> productos = Arrays.asList(
+					//new Producto(nombre, descripcion, pvp, descuento, imagen, categoria)
+					new Producto("MSI GL72MVR 7RFX-864XES Intel Core i7-7700HQ /16GB / 256GB SSD+1TB /GTX 1060 / 17.3\"","La perfecta combinación de los portátiles MSI GL72MVR 7RFX-864XES y la nueva generación de tarjetas gráficas Nvidia GeForce® te permitirá una experiencia VR increíble. Como la única marca certificada por NVIDIA, Intel y VIVE, MSI es la 1st VR ready marca de portátiles y proporciona una experiencia excepcionalmente fluida y potente para una experiencia virtual inmersiva. Es altamente recomendable para disfrutar de la última tecnología y explorar el increíble mundo artificial con los portátiles gaming MSI. Disfruta antes que nadie con los mejores portátiles VR Ready del mundo y disfruta de una experiencia inigualable.\n" + 
+							"\n" + 
+							"Desbloquea todo el poder de tu máquina gaming con las gráficas revolucionarias que convierten a tu equipo en una poderosa arma de destrucción. La serie de gráficas GeForce® GTX 10 con la arquitectura NVIDIA Pascal™ entrega una gran eficiente energética, tecnologías gaming y una gran inmersión VR en cualquier juego. Estas innovadoras gráficas han sido creadas para cumplir con las demandas de la nueva generación de pantallas, incluyendo VR, alta resolución y múltiples monitores. Las tecnologías NVIDIA GameWorks™ te proporcionan una fluidez extrema, gameplay cinemático y el revolucionario NVIDIA Ansel™ que te permite capturar imágenes en el juego en 360 grados y verlas en VR.\n" + 
+							"\n" + 
+							"La última gráfica Nvidia GeForce está preparada para sorprenderte en los portátiles gaming MSI\n" + 
+							"MSI es la primera marca del mundo en tener la última generación de gráficas GeForce® GPU. El rendimiento 3D performance de la GeForce® GTX 1060 ha mejorado más de un 40% comparándolo con la generación anterior. Con la innovadora refrigeración Cooler Boost y las diferentes características gaming para los usuarios más exigentes, la última GPU de NVIDIA GeForce® GTX 1060 GPU está preparada para alcanzar su máximo rendimiento en los portátiles MSI. Ofreciendo la solución “One Click to VR” y una fluida experiencia gaming, MSI está rompiendo el tópico del rendimiento en ordenadores de sobremesa con un punto de vista innovador en los portátiles gaming MSI.\n" + 
+							"\n" + 
+							"Multitarea con un máximo de 3 monitores\n" + 
+							"Expande tu vision para una experiencia gaming extrema. Matrix Display soporta hasta dos monitores externos de forma simultánea mediante un HDMI 1.4 y un Mini DisplayPort 1.2. La multitarea es posible incluso en partidas competitivas. Conecta tu portátil a una televisión de alta definición, Matrix Display soporta salida 4K con resolución 3840 x 2160, esta tecnología crea un ambiente ideal para jugar, además de una experiencia multimedia muy satisfactoria.\n" + 
+							"\n" + 
+							"¡Todo en 3D!\n" + 
+							"TriDef VR permite al jugador jugar sus juegos favoritos en 3D en su HMD. DirectX 9,10 y 11 juegos han sido preconfigurados para generar una experiencia 3D óptima utilizando la tecnología de conversión 2D a 3D de GenMe. TriDef VR permite a los usuarios ajustar su HMD para proporcionar una experiencia óptima para el usuario. Es compatible con Oculus Rift y HTC Vive. También ofrece una interfaz de usuario única, con manos libres, para permitir a los usuarios lanzar juegos a voluntad mientras usan HMD.\n" + 
+							"\n" + 
+							"Porcesadores i7 7th Generation Intel® Core\n" + 
+							"Intel Core i7-7700HQ es 8% más rápido que i7-6700HQ bajo uso promedio. El rendimiento multimedia de la CPU se ha mejorado, lo que lo hace un 10% más rápido que i7-6700HQ. La decodificación / transcodificación de video 4K también se mejora un 15%.\n" + 
+							"\n" + 
+							"Ultra velocidad de almacenamiento\n" + 
+							"Entra en el juego antes que los demás con PCI-E Gen 3.0 x4 con tecnología NVMe en SSD M.2 único. Aprovecha todo el potencial de rendimiento del SSD Gen 3.0 a través de la optimización del hardware y el software que generan velocidades de lectura extremas de hasta 2200 MB / s, 5 veces más rápido que las SSD SATA3.\n" + 
+							"\n" + 
+							"DDR4-2400\n" + 
+							"Obtenga el mejor rendimiento posible de su computadora portátil con la compatibilidad de la memoria avanzada DDR4-2400, logrando más de 32 GB / s en velocidad de lectura y 36 GB / s por escrito. Con un rendimiento superior al 40% más rápido que las generaciones anteriores DDR3-1600, DDR4-2400 es el nuevo estándar de computadora portátil para llevar su experiencia de juego extremo al siguiente nivel.\n" + 
+							"\n" + 
+							"Temperatura dinámica / Rendimiento balanceado\n" + 
+							"La exclusiva tecnología MSI “SHIFT” empuja al sistema hasta su máximo rendimiento mientras que minimiza el ruido y la temperatura. Puedes usar cualquiera de los 5 perfiles disponibles para conseguir el máximo rendimiento o por el contrario maximizar la batería. Puedes activarlo fácilmente pulsando FN+F7 o bien desde el Dragon Gaming Center.\n" + 
+							"\n" + 
+							"Cooler Boost 4\n" + 
+							"El calor es uno de los elementos originales de la tierra. Es pura física que más energía creará más calor. La refrigeración es una batalla que es difícil de vencer, la exclusiva tecnologíad e MSI, Cooler Boost 4 creada dos módulos térmicos colocando dedicados heat pipes para la GPU y CPU. Un click en el botón para acelerar los ventiladores y el conjunto de 6 heat pipes además de los dos ventiladores expulsarán el calor fuera del sistema, maximizando el rendimiento de la refrigeración hasta el nivel más alto.\n" + 
+							"\n" + 
+							"Interfaz USB Type-C Ultra-rápida\n" + 
+							"El nuevo modo de transferencia SuperSpeed+ de hasta 10Gbps, es alrededor de 20 veces más rápido que el estándar anterior USB 2.0. El puerto USB Type-C es más pequeño que el antiguo Type-A y el diseño reversible lo hace aún más conveniente que antes. El USB 3.1 es también compatible con USB 3.0 y USB 2.0.\n" + 
+							"\n" + 
+							"Audio Boost\n" + 
+							"Utilizando amplificadores de auriculares específicos, junto con una circuitería aislada y conectores en oro, Audio Boost entrega la experiencia más avanzada jamás vista en un portátil gaming. El rendimiento del audio ha sido incrementado un 30% comparado con la generación anterior.\n" + 
+							"\n" + 
+							"Gaming Keyboard by Steelseries\n" + 
+							"Cada detalle está especialmente calculado y diseñado para jugadores profesionales, y ahora es tuyo. Este teclado tiene retroiluminación de color puro, diseño ergonómico con desplazamiento de la llave de 1,9 mm para una mejor respuesta táctil y táctil, zona WASD óptima y soporte antideslizante para hasta 45 teclas. La solución de blindaje de nivel mecánico hace que el teclado para juegos sea el más sólido de todos los tiempos.\n" + 
+							"\n" + 
+							"Características:\n" + 
+							"Séptima generación de procesadores Intel® Core™ i7 \n" + 
+							"La última GeForce® GTX con un muy buen nivel de rendimiento\n" + 
+							"17.3\" Full HD (1920x1080)\n" + 
+							"VR listo para una entusiasta experiencia\n" + 
+							"Teclado gaming Steelseries con neón rojo\n" + 
+							"Exclusiva tecnología Cooler Boost 4\n" + 
+							"Exclusiva tecnología SHIFT incrementa el rendimiento manteniendo bajo control el ruido y la temperatura\n" + 
+							"USB 3.1 Type-C conector reversible\n" + 
+							"Nahimic 2+ 3D tecnología de audio  que proporciona 360º de una experiencia  totalmente inmersiva\n" + 
+							"Matrix Display compartible con 4K con 2 salidas de audios\n" + 
+							"Upgraded Killer Gigabit LAN Controller + Killer Shield + 802.11 ac\n" + 
+							"Especificaciones MSI GL72MVR 7RFX-864XES:\n" + 
+							"Procesador Kabylake i7-7700HQ+HM175 (6M Cache, up to 3.80 GHz)\n" + 
+							"Memoria RAM 16 GB DDR4-2400, 2 Slots, Max 32GB\n" + 
+							"Almacenamiento 256GB SSD +1TB (SATA) 7mm\n" + 
+							"Unidad óptica No\n" + 
+							"Display 17.3\" FHD (1920*1080), Anti-Glare\n" + 
+							"Controlador gráfico GeForce®GTX 1060, 6GB GDDR5\n" + 
+							"Conectividad\n" + 
+							"Gigabit Ethernet\n" + 
+							"Intel 3168 Sandy Peak 1 (1x1 802.11 ac) + Bluetooth 4.2 M.2 type\n" + 
+							"Cámara de portátil HD type (30fps@720p)\n" + 
+							"Micrófono Sí\n" + 
+							"Batería 6 celdas 41 Wh\n" + 
+							"Conexiones\n" + 
+							"1x Mic-in\n" + 
+							"1x Headphone-out (SPDIF)\n" + 
+							"1x Type-C USB3.1 Gen2\n" + 
+							"2x Type-A USB3.0\n" + 
+							"1x Type-A USB2.0\n" + 
+							"1x RJ45\n" + 
+							"1x (4K @ 30Hz) HDMI\n" + 
+							"1x Mini-DisplayPort\n" + 
+							"Lector de tarjetas SD (XC/HC)\n" + 
+							"Sistema operativo FreeDos\n" + 
+							"Dimensiones 419 x 287 x 29~32 mm\n" + 
+							"Peso 2.7 kg\n" + 
+							"Color Negro\n" + 
+							"Importante: Este modelo no incluye sistema operativo, se adquiere por separado si se desea:\n" + 
+							"Quiero añadir un Sistema Operativo\n" + 
+							"Quiero añadir Instalación de sistema operativo\n" + 
+							"\n" + 
+							"Nota informativa: Todos nuestros productos son distribuídos por canal oficial español, por lo que todos los teclados incluyen Ñ y poseen garantía oficial española.\n" + 
+							"Comprar MSI GL72MVR 7RFX-864XES Intel Core i7-7700HQ/16GB/256GB SSD+1TB/GTX 1060/17.3\"",1239.0f,0.0f,null,categorias.get(0)),
+					new Producto("HP Notebook 250 G6 Intel Core i5-7200U /8GB / 256GB SSD /15.6\"","Afronta todas tus tareas diarias con un portátil asequible que viene equipado con todas las características que necesitas. Obtén toda la potencia que deseas con el portátil HP Notebook 250 G6.\n" + 
+							"\n" + 
+							"Características:\n" + 
+							"Rendimiento fiable. Con los últimos procesadores Intel y una gran cantidad de espacio en el disco duro o SSD en ciertos modelos, puedes trabajar, jugar, realizar múltiples tareas y almacenar más de lo que es importante para ti. Obtén la alimentación fiable y el almacenamiento en que puedes confiar.\n" + 
+							"Pantalla vibrante. La pantalla HD nítida te permite disfrutar de tus fotos, vídeos y páginas web con detalle. O en algunos modelos, la pantalla Full HD te permite sacar todavía más provecho de la pantalla.\n" + 
+							"Calidad probada. La vida puede ser impredecible, pero tu portátil HP no. Ya sean proyectos de última hora o noches de cine espontáneas, disfruta de un rendimiento excelente con el respaldo de más de 200 pruebas.\n" + 
+							"HP Lounge. Acércate a los artistas que te gustan. Con acceso ilimitado a la música y a contenidos exclusivo para clientes de HP, que no es necesario buscar,vienen a ti.\n" + 
+							"Especificaciones 250 G6\n" + 
+							"Procesador Intel® Core™ i5-7200U (2 Núcleos, 3M Cache, 2.5GHz hasta 3.1GHz)\n" + 
+							"Memoria RAM SDRAM DDR4-2133 de 8 GB\n" + 
+							"Disco duro 256 GB SSD\n" + 
+							"Almacenamiento óptico Grabadora de DVD SuperMulti\n" + 
+							"Display Pantalla fina FHD SVA eDP de 39,6 cm (15,6 pulg.) en diagonal, antirreflejo, WLED (1920 x 1080)\n" + 
+							"Controlador gráfico Intel HD 620\n" + 
+							"Conectividad\n" + 
+							"10/100/1000 Gigabit\n" + 
+							"Combo de 802.11ac (1x1) y Bluetooth® 4.2 (compatible con Miracast)\n" + 
+							"Cámara de portátil Cámara HD HP TrueVision con micrófono digital integrado\n" + 
+							"Micrófono Sí\n" + 
+							"Batería Batería de ion-litio de 3 celdas 31 Wh\n" + 
+							"Conexiones\n" + 
+							"1 x USB 2.0\n" + 
+							"2 x USB 3.1\n" + 
+							"1x HDMI\n" + 
+							"1x RJ-45\n" + 
+							"1 x VGA\n" + 
+							"Combo de salida de auriculares / micrófono del puerto\n" + 
+							"Lector de tarjetas SD multiformato HP\n" + 
+							"Sistema operativo FREEDOS\n" + 
+							"Dimensiones 38 x 25,8 x 23.8 cm\n" + 
+							"Peso 1.86 kg\n" + 
+							"Color Plata\n" + 
+							"Importante: Este modelo no incluye sistema operativo, se adquiere por separado si se desea:\n" + 
+							"Quiero añadir un Sistema Operativo\n" + 
+							"Quiero añadir Instalación de sistema operativo\n" + 
+							"\n" + 
+							"Nota informativa: Todos nuestros productos son distribuídos por canal oficial español, por lo que todos los teclados incluyen Ñ y poseen garantía oficial española.\n" + 
+							"Comprar HP Notebook 250 G6 Intel Core i5-7200U/8GB/256GB SSD/15.6\"",565.0f, 0.0f, null, categorias.get(0)),
+					new Producto("Acer Nitro 5 AN515-51-51A1 Intel Core i5-7300HQ / 8GB / 1TB+128SSD / GTX1050 /15.6\"\n" + 
+							"","Te presentamos el NH.Q2REB.005 de Acer, un portátil con procesador Intel Core i5, 8GB de RAM, 1TB+ 128 SSD  de disco duro y pantalla de 15.6\".\n" + 
+									"\n" + 
+									"Especificaciones:\n" + 
+									"Procesador Intel® Core i5-7300HQ (2.5 GHz, 6 MB)\n" + 
+									"Memoria RAM 8GB DDR4 SODIMM\n" + 
+									"Disco duro 1TB (5400 rpm S-ATA) + 128 GB SSD\n" + 
+									"Almacenamiento óptico NO DISPONE\n" + 
+									"Display 15.6\" LED FullHD (1366 x 768) 16:9 Non-Glare\n" + 
+									"Controlador gráfico Nvidia GEForce GTX 1050 4GB GDDR5\n" + 
+									"Conectividad\n" + 
+									"LAN 10/100\n" + 
+									"WiFi 802.11 ac\n" + 
+									"Bluetooth 4.0\n" + 
+									"Cámara de portátil Sí\n" + 
+									"Micrófono Sí\n" + 
+									"Batería 4 celdas Ion de litio\n" + 
+									"Conexiones\n" + 
+									"1 x HDMI\n" + 
+									"1 x Combo Audio\n" + 
+									"1 x USB 3.0\n" + 
+									"2 x USB 2.0\n" + 
+									"1 x USB 3.1 Type-C\n" + 
+									"1 x RJ45\n" + 
+									"Lector de Tarjetas 3 en 1 (SD, SDHC, MMC)\n" + 
+									"Sistema operativo Boot-Up Linux\n" + 
+									"Dimensiones (Ancho x Profundidad x Altura)  390 x 266 x 26.7 mm\n" + 
+									"Peso  2.7 kg \n" + 
+									"Color Negro\n" + 
+									"Nota informativa: Todos nuestros productos son distribuídos por canal oficial español, por lo que todos los teclados incluyen Ñ y poseen garantía oficial española.\n" + 
+									"Comprar Acer Nitro 5 AN515-51-51A1 Intel Core i5-7300HQ/8GB/1TB+128SSD/GTX1050/15.6\"",790.59f, 0.12f, null, categorias.get(0))
+					);
+			
+			Random r = new Random();
+			for (Producto p : productos) {				
+				for(int i = 0; i < r.nextInt(10); i++)
+					p.addPuntuacion(new Puntuacion(r.nextInt(5)));
+			}
+				
+			
+			productoRepository.saveAll(productos);
+					
+			
+			
+			
+		};
+		
+		
+	}
+}

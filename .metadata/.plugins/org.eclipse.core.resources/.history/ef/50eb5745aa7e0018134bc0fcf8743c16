@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Bootstrap 101 Template</title>
+
+<!-- Bootstrap -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+	rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						<img src="http://via.placeholder.com/400x400" />
+					</div>
+					<div class="details col-md-6">
+						<h3 class="product-title" th:text="${producto.nombre}">Nombre</h3>
+						<p class="product-description" th:text="${producto.descripcion}">Lorem
+							ipsum dolor sit amet, consectetur adipiscing elit. Morbi volutpat
+							congue enim, nec faucibus odio hendrerit eget. Vestibulum quis
+							scelerisque diam. Donec vel nisl tempus elit hendrerit faucibus.
+							Sed condimentum ligula odio, nec porttitor ligula facilisis
+							accumsan. Mauris nec massa sit amet nulla rhoncus vehicula at non
+							nisl. In hac habitasse platea dictumst. Curabitur malesuada orci
+							eget est finibus, sed accumsan nulla blandit. Donec aliquam id
+							est sit amet fringilla. Integer a mi in erat pharetra varius.
+							Quisque tincidunt ante sed mollis malesuada.</p>
+						<h4 class="price">
+							Precio actual: <span th:text="${producto.precio}">20</span>€
+						</h4>
+						<p class="vote">
+							El <strong><span th:text="${producto.porcentajeSatisfaccion}">100</span>%</strong> de los compradores han disfrutado con este producto. <strong>(<span th:text="${producto.numeroVotos}">100</span>
+								votos)</strong>
+						</p>
+						<h5 class="sizes">
+							Tallas: <span class="size" data-toggle="tooltip" title="small">s</span>
+							<span class="size" data-toggle="tooltip" title="medium">m</span>
+							<span class="size" data-toggle="tooltip" title="large">l</span> <span
+								class="size" data-toggle="tooltip" title="xtra large">xl</span>
+						</h5>
+						<h5 class="colors">
+							colores: <span class="color orange not-available"
+								data-toggle="tooltip" title="No disponible en tienda"></span> <span
+								class="color green"></span> <span class="color blue"></span>
+						</h5>
+						<div class="action">
+							<button class="add-to-cart btn btn-default" type="button">Añadir
+								al carrito</button>
+							<button class="like btn btn-default" type="button">
+								<span class="fa fa-heart"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+package com.openwebinars.proyecto.controladores;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.openwebinars.proyecto.modelo.Categoria;
+import com.openwebinars.proyecto.modelo.Producto;
+import com.openwebinars.proyecto.servicios.ProductoService;
+
+@Controller
+@RequestMapping("/admin/producto")
+public class ProductoController {
+	
+	@Autowired
+	private ProductoService productoService;
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		model.addAttribute("productos", productoService.findAll());
+		return "admin/list-producto";
+	}
+	
+	@GetMapping("/nuevo")
+	public String nuevaProducto(Model model) {
+		model.addAttribute("producto", new Producto());
+		return "admin/form-producto";
+	}
+	
+	@PostMapping("/nuevo/submit")
+	public String submitNuevoProducto(@ModelAttribute("producto") Producto producto, Model model) {
+		
+		productoService.save(producto);
+		
+		return "redirect:/admin/producto/";
+	}
+	
+	@GetMapping("/editar/{id}")
+	public String editarCategoria(@PathVariable("id") Long id, Model model) {
+		
+		Categoria categoria = categoriaService.findById(id);
+		
+		if (categoria != null) {
+			model.addAttribute("categoria", categoria);
+			return "admin/form-categoria";
+		} else {
+			return "redirect:/admin/categoria/";
+		}
+		
+	}
+	
+	@GetMapping("/borrar/{id}")
+	public String borrarCategoria(@PathVariable("id") Long id, Model model) {
+		
+		Categoria categoria = categoriaService.findById(id);
+		
+		if (categoria != null) {
+			categoriaService.delete(categoria);
+		} 
+
+		return "redirect:/admin/categoria/";
+		
+		
+	}
+	
+
+}
